@@ -5,6 +5,8 @@ Ansible-Rolle für die Flüschmiede-Konfiguration. Die hier definierte Ansible-R
 * Eclipse, Eclipse JDT
 * verschiedene Abhängigkeiten
 
+Es werden die Ubuntu PPA  `ppa:paolorotolo/android-studio` und `ppa:webupd8team/java` verwendet.
+
 # Example-Playbook
 ```
 - hosts: localhost
