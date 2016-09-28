@@ -1,0 +1,20 @@
+--- 
+- name: Accept Java 8 License
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+- name: "Adding Repositories"
+  apt_repository: repo="{{ item }}" state=present
+  with_items:
+  - 'ppa:paolorotolo/android-studio'
+  - 'ppa:webupd8team/java'
+- name: "Installing java8, eclipse, android-studio"
+  apt: name="{{ item }}" update_cache=yes
+  with_items:
+  - lib32z1
+  - lib32ncurses5
+  - libbz2-1.0:1386
+  - lib32stdc++6
+  - oracle-java8-installer
+  - android-studio
+  - eclipse
+  - eclipse-jdt
+  
