@@ -6,6 +6,7 @@
   with_items:
   - 'ppa:paolorotolo/android-studio'
   - 'ppa:webupd8team/java'
+  - 'ppa:webupd8team/atom'
 - name: "Installing java8, eclipse, android-studio"
   apt: name="{{ item }}" update_cache=yes
   with_items:
@@ -13,8 +14,27 @@
   - lib32ncurses5
   - libbz2-1.0:i386
   - lib32stdc++6
-  - oracle-java8-installer
   - android-studio
   - eclipse
-  - eclipse-jdt
-  
+  - eclipse-jdti
+  - atom
+
+- name: Installing java8
+  apt: name=oracle-java8-installer
+    
+- name: android-studio bash profile
+  copy: src=files/android-studio.sh dest=/etc/profile.d/android-studio.sh owner=root group=root mode=0755
+
+- name: Downloading Android Studio SDK
+  shell: wget -c https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -O /opt/android-sdk_r24.4.1-linux.tgz
+  args:
+    creates: /opt/android-sdk_r24.4.1-linux.tgz
+
+- name: Extracting Android Studio SDK
+  shell: tar xf android-sdk_r24.4.1-linux.tgz 
+  args:
+    chdir: /opt/ 
+    creates: /opt/android-sdk-linux
+
+- name: Disable SDK-Wizzard in Android Studio
+  lineinfile: dest=/opt/android-studio/bin/idea.properties regexp="^disable.android.first.run=" line="disable.android.first.run=true"
