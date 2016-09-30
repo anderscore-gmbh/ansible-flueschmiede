@@ -16,7 +16,7 @@
   - lib32stdc++6
   - android-studio
   - eclipse
-  - eclipse-jdti
+  - eclipse-jdt
   - atom
 
 - name: Installing java8
