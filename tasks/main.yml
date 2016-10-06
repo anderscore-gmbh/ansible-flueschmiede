@@ -36,5 +36,3 @@
     chdir: /opt/ 
     creates: /opt/android-sdk-linux
 
-- name: Disable SDK-Wizzard in Android Studio
-  lineinfile: dest=/opt/android-studio/bin/idea.properties regexp="^disable.android.first.run=" line="disable.android.first.run=true"
