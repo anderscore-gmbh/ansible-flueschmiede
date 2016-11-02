@@ -18,21 +18,10 @@
   - eclipse
   - eclipse-jdt
   - atom
+  - intel-microcode
 
 - name: Installing java8
   apt: name=oracle-java8-installer
     
-- name: android-studio bash profile
-  copy: src=files/android-studio.sh dest=/etc/profile.d/android-studio.sh owner=root group=root mode=0755
 
-- name: Downloading Android Studio SDK
-  shell: wget -c https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -O /opt/android-sdk_r24.4.1-linux.tgz
-  args:
-    creates: /opt/android-sdk_r24.4.1-linux.tgz
-
-- name: Extracting Android Studio SDK
-  shell: tar xf android-sdk_r24.4.1-linux.tgz 
-  args:
-    chdir: /opt/ 
-    creates: /opt/android-sdk-linux
 
