@@ -4,24 +4,47 @@
 - name: "Adding Repositories"
   apt_repository: repo="{{ item }}" state=present
   with_items:
-  - 'ppa:paolorotolo/android-studio'
+  - 'ppa:ubuntu-desktop/ubuntu-make'
   - 'ppa:webupd8team/java'
   - 'ppa:webupd8team/atom'
-- name: "Installing java8, eclipse, android-studio"
+- name: "Installing java8, eclipse"
   apt: name="{{ item }}" update_cache=yes
   with_items:
+  - python-pexpect 
   - lib32z1
   - lib32ncurses5
   - libbz2-1.0:i386
   - lib32stdc++6
-  - android-studio
   - eclipse
   - eclipse-jdt
   - atom
   - intel-microcode
+  - ubuntu-make
 
 - name: Installing java8
   apt: name=oracle-java8-installer
     
+- name: Installing Android studio
+  expect:
+    creates: "/home/chaosnetz/.local/share/umake/android/android-studio"
+    timeout: 600
+    command: umake android android-studio 
+    responses:
+      (?i)Choose installation path: "/home/chaosnetz/.local/share/umake/android/android-studio"
+      (?i)I Accept: "a"
+  become: true
+  become_user: chaosnetz
+    
+    
+- name: Installing Idea Community edition
+  expect:
+    creates: "/home/chaosnetz/.local/share/umake/ide/idea"
+    timeout: 600 
+    command: umake ide idea
+    responses:
+      (?i)Choose installation path: "/home/chaosnetz/.local/share/umake/ide/idea"
+      (?i)I Accept: "a"
+  become: true
+  become_user: chaosnetz
 
 
