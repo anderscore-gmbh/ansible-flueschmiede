@@ -20,30 +20,23 @@
   - atom
   - intel-microcode
   - ubuntu-make
+  - npm
 
 - name: Installing java8
   apt: name=oracle-java8-installer
     
 - name: Installing Android studio
-  expect:
-    creates: "/home/chaosnetz/.local/share/umake/android/android-studio"
-    timeout: 600
-    command: umake android android-studio 
-    responses:
-      (?i)Choose installation path: "/home/chaosnetz/.local/share/umake/android/android-studio"
-      (?i)I Accept: "a"
+  shell: umake android --accept-license /home/chaosnetz/Desktop/android-studio
+  args:
+    creates: /home/chaosnetz/Desktop/android-studio
   become: true
   become_user: chaosnetz
     
     
 - name: Installing Idea Community edition
-  expect:
-    creates: "/home/chaosnetz/.local/share/umake/ide/idea"
-    timeout: 600 
-    command: umake ide idea
-    responses:
-      (?i)Choose installation path: "/home/chaosnetz/.local/share/umake/ide/idea"
-      (?i)I Accept: "a"
+  shell: umake ide idea --accept-license /home/chaosnetz/Desktop/idea
+  args:
+    creates: /home/chaosnetz/Desktop/idea
   become: true
   become_user: chaosnetz
 
