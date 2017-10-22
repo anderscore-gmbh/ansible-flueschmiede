@@ -15,6 +15,7 @@
   - libbz2-1.0:i386
   - lib32stdc++6
   - atom
+  - uname
   - intel-microcode
 
 - name: Installing java8
