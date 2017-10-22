@@ -6,7 +6,7 @@
   with_items:
   - 'ppa:webupd8team/java'
   - 'ppa:webupd8team/atom'
-- name: "Installing java8, eclipse"
+- name: "Installing dependencies"
   apt: name="{{ item }}" update_cache=yes
   with_items:
   - python-pexpect 
@@ -16,8 +16,6 @@
   - lib32stdc++6
   - atom
   - intel-microcode
-  - ubuntu-make
-  - npm
 
 - name: Installing java8
   apt: name=oracle-java8-installer
@@ -30,24 +28,30 @@
     clone: yes
 
 - name: Installing Android studio
-  shell: /usr/local/umake/bin/umake android --accept-license /home/chaosnetz/Desktop/android-studio
+  shell: /usr/local/umake/bin/umake android --accept-license /home/chaosnetz/android
   args:
-    creates: /home/chaosnetz/Desktop/android-studio
+    creates: /home/chaosnetz/android
   become: true
   become_user: chaosnetz
     
     
 - name: Installing Idea Community edition
-  shell: /usr/local/umake/bin/umake ide idea --accept-license /home/chaosnetz/Desktop/idea
+  shell: /usr/local/umake/bin/umake ide idea /home/chaosnetz/idea
   args:
-    creates: /home/chaosnetz/Desktop/idea
+    creates: /home/chaosnetz/idea
   become: true
   become_user: chaosnetz
 
 - name: Installing Eclipse JEE
-  shell: /usr/local/umake/bin/umake ide eclipse-jee --accept-license /home/chaosnetz/Desktop/eclipse
+  shell: /usr/local/umake/bin/umake ide eclipse-jee /home/chaosnetz/eclipse
   args:
-    creates: /home/chaosnetz/Desktop/eclipse
+    creates: /home/chaosnetz/eclipse
   become: true
   become_user: chaosnetz
 
+- name: Installing NodeJS
+  shell: /usr/local/umake/bin/umake nodejs /home/chaosnetz/nodejs
+  args:
+    creates: /home/chaosnetz/nodejs
+  become: true
+  become_user: chaosnetz
