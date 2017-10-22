@@ -14,8 +14,6 @@
   - lib32ncurses5
   - libbz2-1.0:i386
   - lib32stdc++6
-  - eclipse
-  - eclipse-jdt
   - atom
   - intel-microcode
   - ubuntu-make
@@ -39,4 +37,10 @@
   become: true
   become_user: chaosnetz
 
+- name: Installing Eclipse JEE
+  shell: umake ide eclipse-jee --accept-license /home/chaosnetz/Desktop/eclipse
+  args:
+    creates: /home/chaosnetz/Desktop/eclipse
+  become: true
+  become_user: chaosnetz
 
