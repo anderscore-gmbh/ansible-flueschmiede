@@ -4,7 +4,6 @@
 - name: "Adding Repositories"
   apt_repository: repo="{{ item }}" state=present
   with_items:
-  - 'ppa:ubuntu-desktop/ubuntu-make'
   - 'ppa:webupd8team/java'
   - 'ppa:webupd8team/atom'
 - name: "Installing java8, eclipse"
