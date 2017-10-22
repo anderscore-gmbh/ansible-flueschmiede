@@ -21,9 +21,16 @@
 
 - name: Installing java8
   apt: name=oracle-java8-installer
-    
+
+- name: Installing umake
+  git:
+    repo: https://github.com/ubuntu/ubuntu-make.git
+    dest: /usr/local/umake
+    update: yes
+    clone: yes
+
 - name: Installing Android studio
-  shell: umake android --accept-license /home/chaosnetz/Desktop/android-studio
+  shell: /usr/local/umake/bin/umake android --accept-license /home/chaosnetz/Desktop/android-studio
   args:
     creates: /home/chaosnetz/Desktop/android-studio
   become: true
@@ -31,14 +38,14 @@
     
     
 - name: Installing Idea Community edition
-  shell: umake ide idea --accept-license /home/chaosnetz/Desktop/idea
+  shell: /usr/local/umake/bin/umake ide idea --accept-license /home/chaosnetz/Desktop/idea
   args:
     creates: /home/chaosnetz/Desktop/idea
   become: true
   become_user: chaosnetz
 
 - name: Installing Eclipse JEE
-  shell: umake ide eclipse-jee --accept-license /home/chaosnetz/Desktop/eclipse
+  shell: /usr/local/umake/bin/umake ide eclipse-jee --accept-license /home/chaosnetz/Desktop/eclipse
   args:
     creates: /home/chaosnetz/Desktop/eclipse
   become: true
